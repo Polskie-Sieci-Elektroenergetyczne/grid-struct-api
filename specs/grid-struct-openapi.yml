@@ -6,6 +6,8 @@ info:
 servers:
   - url: https://b2b.pse.pl
     description: Serwer B2B PSE
+security:
+  - Bearer-Auth: []
 tags:
   - name: Operacje linii wyprowadzenia mocy
     description: Standardowe operacje dotyczące zgłoszeń linii wyprowadzenia mocy
@@ -105,8 +107,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /sum-a/registration:
     post:
       tags:
@@ -169,8 +169,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /substation/registration:
     post:
       tags:
@@ -233,8 +231,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /storage/registration:
     post:
       tags:
@@ -297,8 +293,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /shunt-filter/registration:
     post:
       tags:
@@ -361,8 +355,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /shunt-compensator/registration:
     post:
       tags:
@@ -425,8 +417,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /shunt-capacitors/registration:
     post:
       tags:
@@ -489,8 +479,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /power-transformer/registration:
     post:
       tags:
@@ -553,8 +541,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /power-output-lines/registration:
     post:
       tags:
@@ -617,8 +603,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /power-line/registration:
     post:
       tags:
@@ -681,8 +665,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /mwe/registration:
     post:
       tags:
@@ -745,8 +727,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /facility/registration:
     post:
       tags:
@@ -809,8 +789,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /coupler/registration:
     post:
       tags:
@@ -873,8 +851,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /busbar-section/registration:
     post:
       tags:
@@ -937,8 +913,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /bay/registration:
     post:
       tags:
@@ -1001,8 +975,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/pl.pse.psi.pwds.b2b.rest.BaseErrorResponse"
-      security:
-        - Bearer-Auth: []
   /switchgear/{mrid}/{validFromDate}:
     get:
       tags:
@@ -3946,26 +3918,6 @@ components:
             - LACK
             - LACK_OF_INFORMATION
       title: MvmtRemoteControl
-    pl.pse.psi.pwds.structural.dto.common.PfuPointsDto:
-      type: object
-      properties:
-        relativeNominalVoltageInConnectionPoint:
-          type: string
-          description: Wartość względna napięcia w punkcie przyłączenia
-          example: 0.96
-          maximum: 1.15
-          minimum: 0.96
-          pattern: "\\d\\.\\d{2}"
-        percentOfGeneratedPower:
-          type: number
-          description: "Procent mocy wytwarzanej [%]"
-          example: 12.12
-          maximum: 99.99
-          minimum: 0.00
-      required:
-        - percentOfGeneratedPower
-        - relativeNominalVoltageInConnectionPoint
-      title: PfuPointsDto
     pl.pse.psi.pwds.structural.dto.common.StoppingCondsDto:
       type: object
       properties:
@@ -4299,10 +4251,6 @@ components:
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        points:
-          type: array
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.PfuPointsDto"
       required:
         - id
         - percentOfGeneratedPower1
@@ -7963,9 +7911,9 @@ components:
           example: 123.12
           maximum: 999.99
           minimum: 0.0
-        pMaxGross:
+        pApparentNominal:
           type: number
-          description: "Moc osiągalna [MW]"
+          description: "Moc pozorna znamionowa [MVA]"
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
@@ -7981,9 +7929,9 @@ components:
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
-        pApparentNominal:
+        pMaxGross:
           type: number
-          description: "Moc pozorna znamionowa [MVA]"
+          description: "Moc osiągalna [MW]"
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
@@ -10119,20 +10067,6 @@ components:
     pl.pse.psi.pwds.structural.dto.request.GeneratorChangeStorageParamsRequestDto:
       type: object
       properties:
-        sourceCategoryCd:
-          type: string
-          description: |-
-            Kod Kategorii źródła energi pierwotnej: W - Wiatr. H - Woda, P - Fotowoltaika, T- Cieplne (T),
-               S - Magazyny, O - Inne, C - Hybrydy
-          enum:
-            - W
-            - H
-            - P
-            - T
-            - S
-            - O
-            - C
-            - B
         dischargePInst:
           type: number
           description: Moc zainstalowana rozładowania
@@ -12511,6 +12445,26 @@ components:
       required:
         - facilityRegistrationTerms
       title: FacilityRegistrationResponseDto
+    pl.pse.psi.pwds.structural.dto.common.PfuPointsDto:
+      type: object
+      properties:
+        relativeNominalVoltageInConnectionPoint:
+          type: string
+          description: Wartość względna napięcia w punkcie przyłączenia
+          example: 0.96
+          maximum: 1.15
+          minimum: 0.96
+          pattern: "\\d\\.\\d{2}"
+        percentOfGeneratedPower:
+          type: number
+          description: "Procent mocy wytwarzanej [%]"
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+      required:
+        - percentOfGeneratedPower
+        - relativeNominalVoltageInConnectionPoint
+      title: PfuPointsDto
     pl.pse.psi.pwds.structural.dto.response.ChangeRequestResponseDto:
       type: object
       properties:
@@ -14732,9 +14686,9 @@ components:
           example: 123.12
           maximum: 999.99
           minimum: 0.0
-        pMaxGross:
+        pApparentNominal:
           type: number
-          description: "Moc osiągalna [MW]"
+          description: "Moc pozorna znamionowa [MVA]"
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
@@ -14750,9 +14704,9 @@ components:
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
-        pApparentNominal:
+        pMaxGross:
           type: number
-          description: "Moc pozorna znamionowa [MVA]"
+          description: "Moc osiągalna [MW]"
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
@@ -15141,3 +15095,9 @@ components:
       required:
         - mrid
         - restSubmitRequestUid
+  securitySchemes:
+    Bearer-Auth:
+      type: http
+      description: Token JWT uzyskany po zalogowaniu do konta B2B auth.ppb.pse.pl
+      scheme: bearer
+      bearerFormat: JWT
