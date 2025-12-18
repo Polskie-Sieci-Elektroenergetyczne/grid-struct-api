@@ -3077,8 +3077,7 @@ components:
           maximum: 999.999
           minimum: 0.0
       title: SecReserveConsumptionRequestDto
-    ? pl.pse.psi.pwds.structural.dto.safeguards.ConnectionPointDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyConnectionPointSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.ConnectionPointDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyConnectionPointSafeguardFGen:
       properties:
         connectionPointIds:
           type: array
@@ -3093,8 +3092,7 @@ components:
         - connectionPointIds
         - safeguards
       title: ConnectionPointDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.ConnectionPointDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyConnectionPointSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.ConnectionPointDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyConnectionPointSafeguardUGen:
       properties:
         connectionPointIds:
           type: array
@@ -3109,8 +3107,7 @@ components:
         - connectionPointIds
         - safeguards
       title: ConnectionPointDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.ConnectionPointDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyConnectionPointSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.ConnectionPointDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyConnectionPointSafeguardFGen:
       properties:
         connectionPointIds:
           type: array
@@ -3125,8 +3122,7 @@ components:
         - connectionPointIds
         - safeguards
       title: ConnectionPointDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.ConnectionPointDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyConnectionPointSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.ConnectionPointDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyConnectionPointSafeguardUGen:
       properties:
         connectionPointIds:
           type: array
@@ -3345,8 +3341,7 @@ components:
       required:
         - voltageLevel
       title: OverfrequencyMeeSafeguardUGen
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyMeeSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyMeeSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -3366,8 +3361,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyMeeSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyMeeSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyMeeSafeguardUGen:
       properties:
         deviceMrid:
           type: string
@@ -3387,8 +3381,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyMeeSafeguardUGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyMeeSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyMeeSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -3408,8 +3401,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyMeeSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyMeeSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyMeeSafeguardUGen:
       properties:
         deviceMrid:
           type: string
@@ -8009,8 +8001,7 @@ components:
           maximum: 99
           minimum: 0
       title: GeneratorChangeUnderloadGenerationRequestDto
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.OverDfDtSafeguardFGenPl.pse.psi.pwds.structural.dto.safeguards.OverDfDtSafeguardFCon
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.OverDfDtSafeguardFGenPl.pse.psi.pwds.structural.dto.safeguards.OverDfDtSafeguardFCon:
       properties:
         connectedTo:
           type: string
@@ -8021,8 +8012,7 @@ components:
       required:
         - connectedTo
       title: GenConElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFGenPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFCon
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFGenPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFCon:
       properties:
         connectedTo:
           type: string
@@ -8033,8 +8023,7 @@ components:
       required:
         - connectedTo
       title: GenConElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUGenPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUCon
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUGenPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUCon:
       properties:
         connectedTo:
           type: string
@@ -8045,8 +8034,7 @@ components:
       required:
         - connectedTo
       title: GenConElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFGenPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFCon
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFGenPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFCon:
       properties:
         connectedTo:
           type: string
@@ -8057,8 +8045,7 @@ components:
       required:
         - connectedTo
       title: GenConElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUGenPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUCon
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenConElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUGenPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUCon:
       properties:
         connectedTo:
           type: string
@@ -8069,8 +8056,7 @@ components:
       required:
         - connectedTo
       title: GenConElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardFGen:
       properties:
         connectedTo:
           type: string
@@ -8079,8 +8065,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardUGen:
       properties:
         connectedTo:
           type: string
@@ -8089,8 +8074,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardFGen:
       properties:
         connectedTo:
           type: string
@@ -8099,8 +8083,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardUGen:
       properties:
         connectedTo:
           type: string
@@ -8109,8 +8092,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardFGen:
       properties:
         connectedTo:
           type: string
@@ -8119,8 +8101,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardUGen:
       properties:
         connectedTo:
           type: string
@@ -8129,8 +8110,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardFGen:
       properties:
         connectedTo:
           type: string
@@ -8139,8 +8119,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardUGen:
       properties:
         connectedTo:
           type: string
@@ -8149,8 +8128,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardFGen:
       properties:
         connectedTo:
           type: string
@@ -8159,8 +8137,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardUGen:
       properties:
         connectedTo:
           type: string
@@ -8169,8 +8146,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyWindTurbineSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyWindTurbineSafeguardFGen:
       properties:
         connectedTo:
           type: string
@@ -8179,8 +8155,7 @@ components:
       required:
         - connectedTo
       title: GenElement
-    ? pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyWindTurbineSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.GenElementPl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyWindTurbineSafeguardUGen:
       properties:
         connectedTo:
           type: string
@@ -8733,8 +8708,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverDfDtSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFCon
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFCon:
       properties:
         deviceMrid:
           type: string
@@ -8754,8 +8728,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFCon"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -8775,8 +8748,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUCon
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUCon:
       properties:
         deviceMrid:
           type: string
@@ -8796,8 +8768,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUCon"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUGen:
       properties:
         deviceMrid:
           type: string
@@ -8817,8 +8788,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyEspSafeguardUGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -8838,8 +8808,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardUGen:
       properties:
         deviceMrid:
           type: string
@@ -8859,8 +8828,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyGeneratorSafeguardUGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -8880,8 +8848,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardUGen:
       properties:
         deviceMrid:
           type: string
@@ -8901,8 +8868,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyInverterSafeguardUGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -8922,8 +8888,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardUGen:
       properties:
         deviceMrid:
           type: string
@@ -8943,8 +8908,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.OverfrequencyWindTurbineSafeguardUGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFCon
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFCon:
       properties:
         deviceMrid:
           type: string
@@ -8964,8 +8928,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFCon"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -8985,8 +8948,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUCon
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUCon:
       properties:
         deviceMrid:
           type: string
@@ -9006,8 +8968,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUCon"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUGen:
       properties:
         deviceMrid:
           type: string
@@ -9027,8 +8988,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyEspSafeguardUGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -9048,8 +9008,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardUGen:
       properties:
         deviceMrid:
           type: string
@@ -9069,8 +9028,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyGeneratorSafeguardUGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -9090,8 +9048,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardUGen:
       properties:
         deviceMrid:
           type: string
@@ -9111,8 +9068,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyInverterSafeguardUGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyWindTurbineSafeguardFGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyWindTurbineSafeguardFGen:
       properties:
         deviceMrid:
           type: string
@@ -9132,8 +9088,7 @@ components:
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyWindTurbineSafeguardFGen"
       title: SafeguardDevice
-    ? pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyWindTurbineSafeguardUGen
-      :
+    pl.pse.psi.pwds.structural.dto.safeguards.SafeguardDevicePl.pse.psi.pwds.structural.dto.safeguards.UnderfrequencyWindTurbineSafeguardUGen:
       properties:
         deviceMrid:
           type: string
