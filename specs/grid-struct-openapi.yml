@@ -2107,6 +2107,412 @@ components:
         - basicData
         - registrationTerms
       title: SubstationChangeRequest
+    pl.pse.psi.pwds.common.dto.request.BayRequestDto:
+      type: object
+      properties:
+        mrid:
+          type: string
+          description: Identyfikator mRID pola
+      required:
+        - mrid
+      title: BayRequestDto
+    pl.pse.psi.pwds.common.dto.request.BusbarSectionRequestDto:
+      type: object
+      properties:
+        mrid:
+          type: string
+          description: Identyfikator mRID węzła/sekcji szyny zbiorczej
+      title: BusbarSectionRequestDto
+    pl.pse.psi.pwds.common.dto.request.GenerationTechnologyRequestDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identyfikator technologii wytwarzania i magazynowania energii
+          example: 1
+      required:
+        - id
+      title: GenerationTechnologyRequestDto
+    pl.pse.psi.pwds.common.dto.request.GeneratorAggregateRequestDto:
+      type: object
+      properties:
+        mrid:
+          type: string
+          description: Identyfikator mRID agregatu MWE
+      title: GeneratorAggregateRequestDto
+    pl.pse.psi.pwds.common.dto.request.PowerTransformerRequestDto:
+      type: object
+      properties:
+        mrid:
+          type: string
+          description: Identyfikator mRID tranformatora
+      title: PowerTransformerRequestDto
+    pl.pse.psi.pwds.common.dto.request.SwitchgearRequestDto:
+      type: object
+      properties:
+        mrid:
+          type: string
+          description: Identyfikator mRID rozdzielni
+      required:
+        - mrid
+      title: SwitchgearRequestDto
+    pl.pse.psi.pwds.storage.StorageRegistrationRequest:
+      type: object
+      description: Zgłoszenie rejestracji magazynu energii
+      properties:
+        terms:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageImportantDates"
+          description: Istotne terminy
+        connectionPoints:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageConnectionPoints"
+          description: Identyfikacja miejsca przyłączenia
+        identityParams:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageIdentification"
+          description: Dane identyfikacyjne MEE
+        markers:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageMarker"
+          description: Znaczniki
+        powerParams:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StoragePowerParams"
+          description: Parametry mocowe
+        storageCode:
+          type: array
+          description: Kody generatora
+          items:
+            $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageGeneratorCode"
+      title: StorageRegistrationRequest
+    pl.pse.psi.pwds.storage.elements.StorageConnectPoint:
+      type: object
+      properties:
+        substation:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.SubstationRequestDto"
+          description: Stacja elektroenergetyczna miejsca przyłączenia
+        switchgear:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.SwitchgearRequestDto"
+          description: Rozdzielnia
+        busbarSection:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusbarSectionRequestDto"
+          description: Szyna
+        bay:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BayRequestDto"
+          description: Pole
+        powerTransformer:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.PowerTransformerRequestDto"
+          description: Transformator
+        ppeCode:
+          type: string
+          description: Kod PPE
+          maxLength: 10
+          minLength: 6
+        nominalVoltage:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.NominalVoltageRequestDto"
+          description: Napięcie w miejscu przyłczenia
+      required:
+        - nominalVoltage
+        - substation
+      title: StorageConnectPoint
+    pl.pse.psi.pwds.storage.elements.StorageConnectionPoints:
+      type: object
+      description: Identyfikacja miejsca przyłączenia
+      properties:
+        latitude:
+          type: string
+          description: Szerokość geograficzna
+          example: 50.0
+          pattern: "\\d{2}\\.\\d{6}"
+        longitude:
+          type: string
+          description: Długość geograficzna
+          example: 15.0
+          pattern: "\\d{2}\\.\\d{6}"
+        odmBusinessPartner:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusinessPartnerRequestDto"
+          description: Odm
+        osdpBusinessPartner:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusinessPartnerRequestDto"
+          description: Oddział OSDp
+        osdnBusinessPartner:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusinessPartnerRequestDto"
+          description: OSDn
+        connectPoints:
+          type: array
+          description: Miejsce przyłączenia
+          items:
+            $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageConnectPoint"
+      required:
+        - latitude
+        - longitude
+        - odmBusinessPartner
+        - osdpBusinessPartner
+      title: StorageConnectionPoints
+    pl.pse.psi.pwds.storage.elements.StorageGeneratorCode:
+      type: object
+      properties:
+        generatorCode:
+          type: string
+          description: Kod generatora
+        generatorAggregate:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.GeneratorAggregateRequestDto"
+          description: Aggregat generatorów
+      title: StorageGeneratorCode
+    pl.pse.psi.pwds.storage.elements.StorageIdentification:
+      type: object
+      description: Dane identyfikacyjne MEE
+      properties:
+        code:
+          type: string
+          description: Kod MEE
+          maxLength: 64
+          minLength: 1
+        name:
+          type: string
+          description: Nazwa MEE
+          maxLength: 64
+          minLength: 1
+        owner:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusinessPartnerRequestDto"
+          description: Właściciel
+        reporterDesc:
+          type: string
+          description: Dane osoby zgłaszającej
+        pgfMrid:
+          type: string
+          description: Zakład wytwarzania energii
+      required:
+        - code
+        - name
+        - owner
+      title: StorageIdentification
+    pl.pse.psi.pwds.storage.elements.StorageImportantDates:
+      type: object
+      description: Istotne terminy
+      properties:
+        ionDate:
+          type: string
+          format: date
+          description: Data przyłączenia MEE do sieci
+          example: 2020-09-29
+        confirmed:
+          type: string
+          description: Potwierdzona
+          enum:
+            - T
+            - "N"
+        plannedExploatationFinishDate:
+          type: string
+          format: date
+          description: Data zakończenia eksploatacji
+          example: 2020-09-29
+      required:
+        - ionDate
+        - plannedExploatationFinishDate
+      title: StorageImportantDates
+    pl.pse.psi.pwds.storage.elements.StorageMarker:
+      type: object
+      description: Znaczniki
+      properties:
+        autogenerationMarker:
+          type: string
+          description: Autogeneracja
+          enum:
+            - T
+            - "N"
+        plannedOnLevel:
+          type: string
+          description: Planowane na poziomie
+          enum:
+            - MWE_SUM
+            - MEE
+            - ZWE
+      required:
+        - autogenerationMarker
+        - plannedOnLevel
+      title: StorageMarker
+    pl.pse.psi.pwds.storage.elements.StoragePowerParams:
+      type: object
+      description: Parametry mocowe
+      properties:
+        chargePMaxNet:
+          type: number
+          description: "Moc maksymalna ładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        chargePMinNet:
+          type: number
+          description: "Moc minimalna ładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        chargePInstGross:
+          type: number
+          description: "Moc zainstalowana ładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        chargePConn:
+          type: number
+          description: "Moc przyłączeniowa ładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        dischargePMaxNet:
+          type: number
+          description: "Moc maksymalna rozładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        dischargePMinNet:
+          type: number
+          description: "Moc minimalna rozładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        dischargePInstGross:
+          type: number
+          description: "Moc zainstalowana rozładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        dischargePConn:
+          type: number
+          description: "Moc przyłączeniowa rozładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        chargEfficiency:
+          type: number
+          description: "Sprawność cyklu ładowania [%]"
+          example: 100.0
+          maximum: 100.00
+          minimum: 0
+        dischargeEfficiency:
+          type: number
+          description: "Sprawność cyklu rozładowania [%]"
+          example: 100.0
+          maximum: 100.00
+          minimum: 0
+        capacity:
+          type: number
+          description: "Pojemność znamionowa [MWh]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        usableCapacity:
+          type: number
+          description: "Pojemność użytkowa [MWh]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        prodTech:
+          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.GenerationTechnologyRequestDto"
+          description: Technologia magazynowania energii elektrycznej Magazynu
+        synchronousMachines:
+          type: array
+          description: Kody generatora
+          items:
+            type: string
+        singleStorageUnitCapacity:
+          type: number
+          description: "Pojemność znamionowa pojedynczej jednostki magazynującej [MWh]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        minChargeLevel:
+          type: number
+          description: "Minimalny stopień naładowania [%]"
+          example: 100.0
+          maximum: 100.00
+          minimum: 0
+        maxChargeLevel:
+          type: number
+          description: "Maksymalny stopień naładowania [%]"
+          example: 100.0
+          maximum: 100.00
+          minimum: 0
+        amountOfStorageUnits:
+          type: integer
+          format: int32
+          description: Liczba jednostek magazynujących wchodzących w skład MEE
+          example: 123
+          maximum: 999999
+          minimum: 0
+        maxFullWorkCyclesCount:
+          type: integer
+          format: int32
+          description: Maksymalna liczba pełnych cykli pracy MEE
+          example: 123
+          maximum: 999
+          minimum: 0
+        maxChargeChangeVelocity:
+          type: number
+          description: "Maksymalna dopuszczalna szybkość zmian mocy ładowania [MW/min]"
+          example: 123.123
+          maximum: 999.999
+          minimum: 0
+        minChargeChangeVelocity:
+          type: number
+          description: "Minimalna dopuszczalna szybkość zmian mocy ładowania [MW/min]"
+          example: 123.123
+          maximum: 999.999
+          minimum: 0
+        maxDischargeChangeVelocity:
+          type: number
+          description: "Maksymalna dopuszczalna szybkość zmian mocy rozładowania [MW/min]"
+          example: 123.123
+          maximum: 999.999
+          minimum: 0
+        minDischargeChangeVelocity:
+          type: number
+          description: "Minimalna dopuszczalna szybkość zmian mocy rozładowania [MW/min]"
+          example: 123.123
+          maximum: 999.999
+          minimum: 0
+        powerRequirementOwnAndGeneral:
+          type: number
+          description: "Zapotrzebowanie na moc elektryczną w celu pokrycia potrzeb\
+            \ ogólnych MEE oraz potrzeb własnych MEE [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        powerRequirementOwnAndGeneralPerYear:
+          type: number
+          description: "Zapotrzebowanie roczne na moc elektryczną w celu pokrycia\
+            \ potrzeb ogólnych MEE oraz potrzeb własnych MEE [GWh/a]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        maxPowerReceivedAndReturnedPerYear:
+          type: number
+          description: "Maksymalna roczna ilości energii elektrycznej odbieranej z\
+            \ sieci oraz oddawanej do sieci [GWh/a]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        papparentDischarge:
+          type: number
+          description: "Moc pozorna rozładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+        papparentCharge:
+          type: number
+          description: "Moc pozorna ładowania [MW]"
+          example: 1234.123
+          maximum: 9999.999
+          minimum: 0
+      required:
+        - capacity
+        - chargEfficiency
+        - chargePMaxNet
+        - dischargeEfficiency
+        - dischargePConn
+        - dischargePInstGross
+        - dischargePMaxNet
+        - prodTech
+        - usableCapacity
+      title: StoragePowerParams
     OverfrequencyConnectionPointSafeguardFGen:
       type: object
       properties:
@@ -2451,52 +2857,9 @@ components:
       required:
         - voltageLevel
       title: UnderfrequencyMeeSafeguardUGen
-    pl.pse.psi.pwds.common.dto.request.BayRequestDto:
+    pl.pse.psi.pwds.storage.StorageChangeRequest:
       type: object
-      properties:
-        mrid:
-          type: string
-          description: Identyfikator mRID pola
-      required:
-        - mrid
-      title: BayRequestDto
-    pl.pse.psi.pwds.common.dto.request.BusbarSectionRequestDto:
-      type: object
-      properties:
-        mrid:
-          type: string
-          description: Identyfikator mRID węzła/sekcji szyny zbiorczej
-      title: BusbarSectionRequestDto
-    pl.pse.psi.pwds.common.dto.request.GenerationTechnologyRequestDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Identyfikator technologii wytwarzania i magazynowania energii
-          example: 1
-      required:
-        - id
-      title: GenerationTechnologyRequestDto
-    pl.pse.psi.pwds.common.dto.request.PowerTransformerRequestDto:
-      type: object
-      properties:
-        mrid:
-          type: string
-          description: Identyfikator mRID tranformatora
-      title: PowerTransformerRequestDto
-    pl.pse.psi.pwds.common.dto.request.SwitchgearRequestDto:
-      type: object
-      properties:
-        mrid:
-          type: string
-          description: Identyfikator mRID rozdzielni
-      required:
-        - mrid
-      title: SwitchgearRequestDto
-    pl.pse.psi.pwds.storage.StorageRegistrationRequest:
-      type: object
-      description: Zgłoszenie rejestracji magazynu energii
+      description: Zgłoszenie strukturalne magazynu energii
       properties:
         terms:
           $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageImportantDates"
@@ -2506,13 +2869,18 @@ components:
           description: Identyfikacja miejsca przyłączenia
         identityParams:
           $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageIdentification"
-          description: Dane identyfikacyjne MWE
+          description: Dane identyfikacyjne MEE
         markers:
           $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageMarker"
           description: Znaczniki
         powerParams:
           $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StoragePowerParams"
           description: Parametry mocowe
+        storageCode:
+          type: array
+          description: Kody generatora
+          items:
+            $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageGeneratorCode"
         baseLoadAndRrConsumption:
           $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.BaseLoadAndRrRequestDto"
           description: Obciążenia Bazowe (EB) i rezerwa RR - pobór
@@ -2520,10 +2888,10 @@ components:
           $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.BaseLoadAndRrRequestDto"
           description: Obciążenia Bazowe (EB) i rezerwa RR - generacja
         fcrReserveDtoConsumption:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.FcrReserveDto"
+          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageFcrReserveDto"
           description: Rezerwy FCR - pobór
         fcrReserveDtoGeneration:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.FcrReserveDto"
+          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageFcrReserveDto"
           description: Rezerwy FCR - generacja
         affrConsumption:
           $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.SecReserveConsumptionRequestDto"
@@ -2629,7 +2997,12 @@ components:
           description: Lista plików schematów wyprowadzenia mocy
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.common.FileUploadDto"
-      title: StorageRegistrationRequest
+        ufqpCharacteristics:
+          type: array
+          description: Charakterystyki statyczne U=f(Q/P)
+          items:
+            $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.UfqpCharacteristics"
+      title: StorageChangeRequest
     pl.pse.psi.pwds.storage.elements.AutonomousStart:
       type: object
       description: Rozruch autonomiczny
@@ -3263,352 +3636,7 @@ components:
         - powerOfMeeGeneralNeeds
         - powerOfMeeOwnNeeds
       title: StartupConditions
-    pl.pse.psi.pwds.storage.elements.StorageConnectPoint:
-      type: object
-      properties:
-        substation:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.SubstationRequestDto"
-          description: Stacja elektroenergetyczna miejsca przyłączenia
-        switchgear:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.SwitchgearRequestDto"
-          description: Rozdzielnia
-        busbarSection:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusbarSectionRequestDto"
-          description: Szyna
-        bay:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BayRequestDto"
-          description: Pole
-        powerTransformer:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.PowerTransformerRequestDto"
-          description: Transformator
-        ppeCode:
-          type: string
-          description: Kod PPE
-          maxLength: 10
-          minLength: 6
-        nominalVoltage:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.NominalVoltageRequestDto"
-          description: Napięcie w miejscu przyłczenia
-      required:
-        - nominalVoltage
-        - substation
-      title: StorageConnectPoint
-    pl.pse.psi.pwds.storage.elements.StorageConnectionPoints:
-      type: object
-      description: Identyfikacja miejsca przyłączenia
-      properties:
-        latitude:
-          type: string
-          description: Szerokość geograficzna
-          example: 50.0
-          pattern: "\\d{2}\\.\\d{6}"
-        longitude:
-          type: string
-          description: Długość geograficzna
-          example: 15.0
-          pattern: "\\d{2}\\.\\d{6}"
-        odmBusinessPartner:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusinessPartnerRequestDto"
-          description: Odm
-        osdpBusinessPartner:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusinessPartnerRequestDto"
-          description: Oddział OSDp
-        osdnBusinessPartner:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusinessPartnerRequestDto"
-          description: OSDn
-        connectPoints:
-          type: array
-          description: Miejsce przyłączenia
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageConnectPoint"
-      required:
-        - latitude
-        - longitude
-        - odmBusinessPartner
-        - osdpBusinessPartner
-      title: StorageConnectionPoints
-    pl.pse.psi.pwds.storage.elements.StorageIdentification:
-      type: object
-      description: Dane identyfikacyjne MEE
-      properties:
-        code:
-          type: string
-          description: Kod MEE
-          maxLength: 64
-          minLength: 1
-        name:
-          type: string
-          description: Nazwa MEE
-          maxLength: 64
-          minLength: 1
-        owner:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.BusinessPartnerRequestDto"
-          description: Właściciel
-        reporterDesc:
-          type: string
-          description: Dane osoby zgłaszającej
-        pgfMrid:
-          type: string
-          description: Zakład wytwarzania energii
-      required:
-        - code
-        - name
-        - owner
-      title: StorageIdentification
-    pl.pse.psi.pwds.storage.elements.StorageImportantDates:
-      type: object
-      description: Istotne terminy
-      properties:
-        ionDate:
-          type: string
-          format: date
-          description: Data przyłączenia MEE do sieci
-          example: 2020-09-29
-        confirmed:
-          type: string
-          description: Potwierdzona
-          enum:
-            - T
-            - "N"
-        plannedExploatationFinishDate:
-          type: string
-          format: date
-          description: Data zakończenia eksploatacji
-          example: 2020-09-29
-      required:
-        - ionDate
-        - plannedExploatationFinishDate
-      title: StorageImportantDates
-    pl.pse.psi.pwds.storage.elements.StorageMarker:
-      type: object
-      description: Znaczniki
-      properties:
-        autogenerationMarker:
-          type: string
-          description: Autogeneracja
-          enum:
-            - T
-            - "N"
-        plannedOnLevel:
-          type: string
-          description: Planowane na poziomie
-          enum:
-            - MWE_SUM
-            - MEE
-            - ZWE
-      required:
-        - autogenerationMarker
-        - plannedOnLevel
-      title: StorageMarker
-    pl.pse.psi.pwds.storage.elements.StoragePowerParams:
-      type: object
-      description: Parametry mocowe
-      properties:
-        chargePMaxNet:
-          type: number
-          description: "Moc maksymalna ładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        chargePMinNet:
-          type: number
-          description: "Moc minimalna ładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        chargePInstGross:
-          type: number
-          description: "Moc zainstalowana ładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        chargePConn:
-          type: number
-          description: "Moc przyłączeniowa ładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        dischargePMaxNet:
-          type: number
-          description: "Moc maksymalna rozładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        dischargePMinNet:
-          type: number
-          description: "Moc minimalna rozładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        dischargePInstGross:
-          type: number
-          description: "Moc zainstalowana rozładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        dischargePConn:
-          type: number
-          description: "Moc przyłączeniowa rozładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        chargEfficiency:
-          type: number
-          description: "Sprawność cyklu ładowania [%]"
-          example: 100.0
-          maximum: 100.00
-          minimum: 0
-        dischargeEfficiency:
-          type: number
-          description: "Sprawność cyklu rozładowania [%]"
-          example: 100.0
-          maximum: 100.00
-          minimum: 0
-        capacity:
-          type: number
-          description: "Pojemność znamionowa [MWh]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        usableCapacity:
-          type: number
-          description: "Pojemność użytkowa [MWh]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        prodTech:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.request.GenerationTechnologyRequestDto"
-          description: Technologia magazynowania energii elektrycznej Magazynu
-        synchronousMachines:
-          type: array
-          description: Kody generatora
-          items:
-            type: string
-        singleStorageUnitCapacity:
-          type: number
-          description: "Pojemność znamionowa pojedynczej jednostki magazynującej [MWh]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        minChargeLevel:
-          type: number
-          description: "Minimalny stopień naładowania [%]"
-          example: 100.0
-          maximum: 100.00
-          minimum: 0
-        maxChargeLevel:
-          type: number
-          description: "Maksymalny stopień naładowania [%]"
-          example: 100.0
-          maximum: 100.00
-          minimum: 0
-        amountOfStorageUnits:
-          type: integer
-          format: int32
-          description: Liczba jednostek magazynujących wchodzących w skład MEE
-          example: 123
-          maximum: 999999
-          minimum: 0
-        maxFullWorkCyclesCount:
-          type: integer
-          format: int32
-          description: Maksymalna liczba pełnych cykli pracy MEE
-          example: 123
-          maximum: 999
-          minimum: 0
-        maxChargeChangeVelocity:
-          type: number
-          description: "Maksymalna dopuszczalna szybkość zmian mocy ładowania [MW/min]"
-          example: 123.123
-          maximum: 999.999
-          minimum: 0
-        minChargeChangeVelocity:
-          type: number
-          description: "Minimalna dopuszczalna szybkość zmian mocy ładowania [MW/min]"
-          example: 123.123
-          maximum: 999.999
-          minimum: 0
-        maxDischargeChangeVelocity:
-          type: number
-          description: "Maksymalna dopuszczalna szybkość zmian mocy rozładowania [MW/min]"
-          example: 123.123
-          maximum: 999.999
-          minimum: 0
-        minDischargeChangeVelocity:
-          type: number
-          description: "Minimalna dopuszczalna szybkość zmian mocy rozładowania [MW/min]"
-          example: 123.123
-          maximum: 999.999
-          minimum: 0
-        powerRequirementOwnAndGeneral:
-          type: number
-          description: "Zapotrzebowanie na moc elektryczną w celu pokrycia potrzeb\
-            \ ogólnych MEE oraz potrzeb własnych MEE [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        powerRequirementOwnAndGeneralPerYear:
-          type: number
-          description: "Zapotrzebowanie roczne na moc elektryczną w celu pokrycia\
-            \ potrzeb ogólnych MEE oraz potrzeb własnych MEE [GWh/a]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        maxPowerReceivedAndReturnedPerYear:
-          type: number
-          description: "Maksymalna roczna ilości energii elektrycznej odbieranej z\
-            \ sieci oraz oddawanej do sieci [GWh/a]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        papparentDischarge:
-          type: number
-          description: "Moc pozorna rozładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-        papparentCharge:
-          type: number
-          description: "Moc pozorna ładowania [MW]"
-          example: 1234.123
-          maximum: 9999.999
-          minimum: 0
-      required:
-        - capacity
-        - chargEfficiency
-        - chargePMaxNet
-        - dischargeEfficiency
-        - dischargePConn
-        - dischargePInstGross
-        - dischargePMaxNet
-        - prodTech
-        - usableCapacity
-      title: StoragePowerParams
-    pl.pse.psi.pwds.storage.elements.Telemetry:
-      type: object
-      properties:
-        meteringStatus:
-          type: string
-          description: Status opomiarowania
-          enum:
-            - T
-            - "N"
-          example: T
-        meteringCategory:
-          type: string
-          description: Kategoria opomiarowania
-          enum:
-            - T
-            - "N"
-          example: T
-        iccpIdentifier:
-          type: string
-          description: Identyfikator ICCP (TASE.2) pomiaru agregatu
-          example: T
-          maxLength: 32
-          minLength: 0
-      title: Telemetry
-    pl.pse.psi.pwds.structural.dto.common.FcrReserveDto:
+    pl.pse.psi.pwds.storage.elements.StorageFcrReserveDto:
       type: object
       properties:
         fcrReserveUpAbility:
@@ -3641,13 +3669,6 @@ components:
           type: integer
           format: int32
           description: Zakres statyzmu w górę do
-          example: 11
-          maximum: 99
-          minimum: 0
-        fcrUpStaticSetting:
-          type: integer
-          format: int32
-          description: Przyjęta nastawa statyzmu w górę
           example: 11
           maximum: 99
           minimum: 0
@@ -3698,13 +3719,6 @@ components:
           example: 11
           maximum: 99
           minimum: 0
-        fcrDownStaticSetting:
-          type: integer
-          format: int32
-          description: Przyjęta nastawa statyzmu w dół
-          example: 11
-          maximum: 99
-          minimum: 0
         fcrDownDeadbandScopeFrom:
           type: integer
           format: int32
@@ -3719,7 +3733,911 @@ components:
           example: 111
           maximum: 999
           minimum: 0
-      title: FcrReserveDto
+      title: StorageFcrReserveDto
+    pl.pse.psi.pwds.storage.elements.Telemetry:
+      type: object
+      properties:
+        meteringStatus:
+          type: string
+          description: Status opomiarowania
+          enum:
+            - T
+            - "N"
+          example: T
+        meteringCategory:
+          type: string
+          description: Kategoria opomiarowania
+          enum:
+            - T
+            - "N"
+          example: T
+        iccpIdentifier:
+          type: string
+          description: Identyfikator ICCP (TASE.2) pomiaru agregatu
+          example: T
+          maxLength: 32
+          minLength: 0
+      title: Telemetry
+    pl.pse.psi.pwds.storage.elements.UfqpCharacteristics:
+      type: object
+      description: Zbiór punktów opisujących charakterystykę U=f(Q/P)
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Id wykorzystywane do łączenia z miejscami przyłączenia
+          example: 1
+        q0:
+          type: number
+          description: Q na MEE dla 0.850
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p0:
+          type: number
+          description: P na MEE dla 0.850
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax0Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.850
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax0Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.850
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q1:
+          type: number
+          description: Q na MEE dla 0.860
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p1:
+          type: number
+          description: P na MEE dla 0.860
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax1Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.860
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax1Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.860
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q2:
+          type: number
+          description: Q na MEE dla 0.875
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p2:
+          type: number
+          description: P na MEE dla 0.875
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax2Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.875
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax2Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.875
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q3:
+          type: number
+          description: Q na MEE dla 0.880
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p3:
+          type: number
+          description: P na MEE dla 0.880
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax3Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.880
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax3Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.880
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q4:
+          type: number
+          description: Q na MEE dla 0.890
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p4:
+          type: number
+          description: P na MEE dla 0.890
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax4Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.890
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax4Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.890
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q5:
+          type: number
+          description: Q na MEE dla 0.900
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p5:
+          type: number
+          description: P na MEE dla 0.900
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax5Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.900
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax5Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.900
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q6:
+          type: number
+          description: Q na MEE dla 0.910
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p6:
+          type: number
+          description: P na MEE dla 0.910
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax6Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.910
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax6Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.910
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q7:
+          type: number
+          description: Q na MEE dla 0.920
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p7:
+          type: number
+          description: P na MEE dla 0.920
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax7Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.920
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax7Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.920
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q8:
+          type: number
+          description: Q na MEE dla 0.930
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p8:
+          type: number
+          description: P na MEE dla 0.930
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax8Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.930
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax8Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.930
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q9:
+          type: number
+          description: Q na MEE dla 0.940
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p9:
+          type: number
+          description: P na MEE dla 0.940
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax9Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.940
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax9Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.940
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q10:
+          type: number
+          description: Q na MEE dla 0.950
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p10:
+          type: number
+          description: P na MEE dla 0.950
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax10Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.950
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax10Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.950
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q11:
+          type: number
+          description: Q na MEE dla 0.960
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p11:
+          type: number
+          description: P na MEE dla 0.960
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax11Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.960
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax11Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.960
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q12:
+          type: number
+          description: Q na MEE dla 0.970
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p12:
+          type: number
+          description: P na MEE dla 0.970
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax12Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.970
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax12Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.970
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q13:
+          type: number
+          description: Q na MEE dla 0.980
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p13:
+          type: number
+          description: P na MEE dla 0.980
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax13Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.980
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax13Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.980
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q14:
+          type: number
+          description: Q na MEE dla 0.990
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p14:
+          type: number
+          description: P na MEE dla 0.990
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax14Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 0.990
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax14Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 0.990
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q15:
+          type: number
+          description: Q na MEE dla 1.000
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p15:
+          type: number
+          description: P na MEE dla 1.000
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax15Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.000
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax15Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.000
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q16:
+          type: number
+          description: Q na MEE dla 1.010
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p16:
+          type: number
+          description: P na MEE dla 1.010
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax16Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.010
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax16Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.010
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q17:
+          type: number
+          description: Q na MEE dla 1.020
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p17:
+          type: number
+          description: P na MEE dla 1.020
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax17Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.020
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax17Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.020
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q18:
+          type: number
+          description: Q na MEE dla 1.030
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p18:
+          type: number
+          description: P na MEE dla 1.030
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax18Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.030
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax18Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.030
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q19:
+          type: number
+          description: Q na MEE dla 1.040
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p19:
+          type: number
+          description: P na MEE dla 1.040
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax19Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.040
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax19Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.040
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q20:
+          type: number
+          description: Q na MEE dla 1.050
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p20:
+          type: number
+          description: P na MEE dla 1.050
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax20Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.050
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax20Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.050
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q21:
+          type: number
+          description: Q na MEE dla 1.060
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p21:
+          type: number
+          description: P na MEE dla 1.060
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax21Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.060
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax21Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.060
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q22:
+          type: number
+          description: Q na MEE dla 1.070
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p22:
+          type: number
+          description: P na MEE dla 1.070
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax22Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.070
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax22Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.070
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q23:
+          type: number
+          description: Q na MEE dla 1.080
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p23:
+          type: number
+          description: P na MEE dla 1.080
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax23Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.080
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax23Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.080
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q24:
+          type: number
+          description: Q na MEE dla 1.090
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p24:
+          type: number
+          description: P na MEE dla 1.090
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax24Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.090
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax24Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.090
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q25:
+          type: number
+          description: Q na MEE dla 1.100
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p25:
+          type: number
+          description: P na MEE dla 1.100
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax25Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.100
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax25Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.100
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q26:
+          type: number
+          description: Q na MEE dla 1.110
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p26:
+          type: number
+          description: P na MEE dla 1.110
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax26Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.110
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax26Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.110
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q27:
+          type: number
+          description: Q na MEE dla 1.120
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p27:
+          type: number
+          description: P na MEE dla 1.120
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax27Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.120
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax27Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.120
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q28:
+          type: number
+          description: Q na MEE dla 1.130
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p28:
+          type: number
+          description: P na MEE dla 1.130
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax28Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.130
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax28Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.130
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q29:
+          type: number
+          description: Q na MEE dla 1.140
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p29:
+          type: number
+          description: P na MEE dla 1.140
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax29Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.140
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax29Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.140
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        q30:
+          type: number
+          description: Q na MEE dla 1.150
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        p30:
+          type: number
+          description: P na MEE dla 1.150
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax30Load:
+          type: number
+          description: Q/Pmax - Ładowanie dla 1.150
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+        qpmax30Unload:
+          type: number
+          description: Q/Pmax - Rozładowanie dla 1.150
+          example: 12.12
+          maximum: 99.99
+          minimum: 0.00
+      required:
+        - id
+        - p0
+        - p1
+        - p10
+        - p11
+        - p12
+        - p13
+        - p14
+        - p15
+        - p16
+        - p17
+        - p18
+        - p19
+        - p2
+        - p20
+        - p21
+        - p22
+        - p23
+        - p24
+        - p25
+        - p26
+        - p27
+        - p28
+        - p29
+        - p3
+        - p30
+        - p4
+        - p5
+        - p6
+        - p7
+        - p8
+        - p9
+        - q0
+        - q1
+        - q10
+        - q11
+        - q12
+        - q13
+        - q14
+        - q15
+        - q16
+        - q17
+        - q18
+        - q19
+        - q2
+        - q20
+        - q21
+        - q22
+        - q23
+        - q24
+        - q25
+        - q26
+        - q27
+        - q28
+        - q29
+        - q3
+        - q30
+        - q4
+        - q5
+        - q6
+        - q7
+        - q8
+        - q9
+        - qpmax0Load
+        - qpmax0Unload
+        - qpmax10Load
+        - qpmax10Unload
+        - qpmax11Load
+        - qpmax11Unload
+        - qpmax12Load
+        - qpmax12Unload
+        - qpmax13Load
+        - qpmax13Unload
+        - qpmax14Load
+        - qpmax14Unload
+        - qpmax15Load
+        - qpmax15Unload
+        - qpmax16Load
+        - qpmax16Unload
+        - qpmax17Load
+        - qpmax17Unload
+        - qpmax18Load
+        - qpmax18Unload
+        - qpmax19Load
+        - qpmax19Unload
+        - qpmax1Load
+        - qpmax1Unload
+        - qpmax20Load
+        - qpmax20Unload
+        - qpmax21Load
+        - qpmax21Unload
+        - qpmax22Load
+        - qpmax22Unload
+        - qpmax23Load
+        - qpmax23Unload
+        - qpmax24Load
+        - qpmax24Unload
+        - qpmax25Load
+        - qpmax25Unload
+        - qpmax26Load
+        - qpmax26Unload
+        - qpmax27Load
+        - qpmax27Unload
+        - qpmax28Load
+        - qpmax28Unload
+        - qpmax29Load
+        - qpmax29Unload
+        - qpmax2Load
+        - qpmax2Unload
+        - qpmax30Load
+        - qpmax30Unload
+        - qpmax3Load
+        - qpmax3Unload
+        - qpmax4Load
+        - qpmax4Unload
+        - qpmax5Load
+        - qpmax5Unload
+        - qpmax6Load
+        - qpmax6Unload
+        - qpmax7Load
+        - qpmax7Unload
+        - qpmax8Load
+        - qpmax8Unload
+        - qpmax9Load
+        - qpmax9Unload
+      title: UfqpCharacteristics
     pl.pse.psi.pwds.structural.dto.common.MfrrdReserveDto:
       type: object
       properties:
@@ -4125,127 +5043,127 @@ components:
           format: int64
           description: Id wykorzystywane do łączenia z miejscami przyłączenia
           example: 1
-        percentOfGeneratedPower1:
+        percentOfGeneratedPower0:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 0.96"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower2:
+        percentOfGeneratedPower1:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 0.97"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower3:
+        percentOfGeneratedPower2:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 0.98"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower4:
+        percentOfGeneratedPower3:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 0.99"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower5:
+        percentOfGeneratedPower4:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.00"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower6:
+        percentOfGeneratedPower5:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.01"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower7:
+        percentOfGeneratedPower6:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.02"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower8:
+        percentOfGeneratedPower7:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.01"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower9:
+        percentOfGeneratedPower8:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.03"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower10:
+        percentOfGeneratedPower9:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.04"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower11:
+        percentOfGeneratedPower10:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.05"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower12:
+        percentOfGeneratedPower11:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.06"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower13:
+        percentOfGeneratedPower12:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.07"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower14:
+        percentOfGeneratedPower13:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.08"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower15:
+        percentOfGeneratedPower14:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.09"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower16:
+        percentOfGeneratedPower15:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.10"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower17:
+        percentOfGeneratedPower16:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.11"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower18:
+        percentOfGeneratedPower17:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.12"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower19:
+        percentOfGeneratedPower18:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.13"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower20:
+        percentOfGeneratedPower19:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.14"
           example: 12.12
           maximum: 99.99
           minimum: 0.00
-        percentOfGeneratedPower21:
+        percentOfGeneratedPower20:
           type: number
           description: "Procent mocy wytwarzanej [%] dla wartości 1.15"
           example: 12.12
@@ -4253,6 +5171,7 @@ components:
           minimum: 0.00
       required:
         - id
+        - percentOfGeneratedPower0
         - percentOfGeneratedPower1
         - percentOfGeneratedPower10
         - percentOfGeneratedPower11
@@ -4266,7 +5185,6 @@ components:
         - percentOfGeneratedPower19
         - percentOfGeneratedPower2
         - percentOfGeneratedPower20
-        - percentOfGeneratedPower21
         - percentOfGeneratedPower3
         - percentOfGeneratedPower4
         - percentOfGeneratedPower5
@@ -4766,142 +5684,6 @@ components:
           items:
             $ref: "#/components/schemas/UnderfrequencyMeeSafeguardUGen"
       title: SafeguardDevice
-    pl.pse.psi.pwds.storage.StorageChangeRequest:
-      type: object
-      description: Zgłoszenie strukturalne magazynu energii
-      properties:
-        terms:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageImportantDates"
-          description: Istotne terminy
-        connectionPoints:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageConnectionPoints"
-          description: Identyfikacja miejsca przyłączenia
-        identityParams:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageIdentification"
-          description: Dane identyfikacyjne MWE
-        markers:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StorageMarker"
-          description: Znaczniki
-        powerParams:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StoragePowerParams"
-          description: Parametry mocowe
-        baseLoadAndRrConsumption:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.BaseLoadAndRrRequestDto"
-          description: Obciążenia Bazowe (EB) i rezerwa RR - pobór
-        baseLoadAndRrGeneration:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.BaseLoadAndRrRequestDto"
-          description: Obciążenia Bazowe (EB) i rezerwa RR - generacja
-        fcrReserveDtoConsumption:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.FcrReserveDto"
-          description: Rezerwy FCR - pobór
-        fcrReserveDtoGeneration:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.FcrReserveDto"
-          description: Rezerwy FCR - generacja
-        affrConsumption:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.SecReserveConsumptionRequestDto"
-          description: Rezerwa aFRR - pobór
-        affrGeneration:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.SecReserveConsumptionRequestDto"
-          description: Rezerwa aFRR - generacja
-        mfrrdConsumption:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.MfrrdReserveDto"
-          description: Rezerwa mFRRd - pobór
-        mfrrdGeneration:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.MfrrdReserveDto"
-          description: Rezerwa mFRRd - generacja
-        regulationModes:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.RegulationModes"
-          description: Tryby regulacji
-        qfuCharacteristics:
-          type: array
-          description: Charakterystyki Q=f(U)
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.QfuCharacteristicsRequestDto"
-        pfuCharacteristics:
-          type: array
-          description: Charakterystyki P=f(U)
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.PfuCharacteristicsRequestDto"
-        qfpCharacteristics:
-          type: array
-          description: Charakterystyki Q=f(P)
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.QfpCharacteristicsRequestDto"
-        lfsmCons:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.LfsmRequestDto"
-          description: LFSM - pobór
-        lfsmGen:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.LfsmRequestDto"
-          description: LFSM - generacja
-        mvmtActivePowerReduction:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.MvmtActivePowerReduction"
-          description: Redukcja mocy czynnej
-        mvmtRemoteControl:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.MvmtRemoteControl"
-          description: "Zdalne sterowanie Q,U,cos φ"
-        mvmtRegulationSystems:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.MvmtRegulationSystems"
-          description: Układy regulacji
-        mvmtRedistribution:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.MvmtDispositions"
-          description: Redysponowanie
-        stoppingConds:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.common.StoppingCondsDto"
-          description: Postój
-        autonomousStart:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.AutonomousStart"
-          description: Rozruch autonomiczny
-        islandSystems:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.IslandSystems"
-          description: Praca w układach wyspowych
-        startupConditions:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.StartupConditions"
-          description: Warunki uruchomienia
-        lvfrtSym:
-          type: array
-          description: Lista plików LVFRT - zdolność do utrzymania w pracy podczas
-            zwarcia symetrycznego
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.common.FileUploadDto"
-        lvfrtAsym:
-          type: array
-          description: Lista plików LVFRT - zdolność do utrzymania w pracy podczas
-            zwarcia niesymetrycznego
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.common.FileUploadDto"
-        hvfrtFiles:
-          type: array
-          description: Lista plików HVFRT - zdolność do utrzymania w pracy przy podwyższonym
-            napięciu
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.common.FileUploadDto"
-        ifuSym:
-          type: array
-          description: Lista plików I=f(U) - Zdolność do generacji szybkiego prądu
-            zwarciowego dla zwarcia symetrycznego charakterystyka statyczna
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.common.FileUploadDto"
-        ifuAsym:
-          type: array
-          description: Lista plików I=f(U) - Zdolność do generacji szybkiego prądu
-            zwarciowego dla zwarcia niesymetrycznego charakterystyka statyczna
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.common.FileUploadDto"
-        safeguardsU:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.SafeguardsU"
-          description: Zabezpieczenia U
-        safeguardsF:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.SafeguardsF"
-          description: Zabezpieczenia f
-        telemetry:
-          $ref: "#/components/schemas/pl.pse.psi.pwds.storage.elements.Telemetry"
-          description: Dane telemetryczne
-        powerOutputDiagrams:
-          type: array
-          description: Lista plików schematów wyprowadzenia mocy
-          items:
-            $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.common.FileUploadDto"
-      title: StorageChangeRequest
     pl.pse.psi.pwds.powerGrid.shuntFilter.registration.request.ShuntFilterBasicDataRequest:
       type: object
       properties:
@@ -6046,13 +6828,6 @@ components:
           type: string
           format: date
       title: PowerLinesChangeRequest
-    pl.pse.psi.pwds.common.dto.request.GeneratorAggregateRequestDto:
-      type: object
-      properties:
-        mrid:
-          type: string
-          description: Identyfikator mRID agregatu MWE
-      title: GeneratorAggregateRequestDto
     pl.pse.psi.pwds.common.dto.request.synchrMachine.SynchrMachineRepresentationPointRequest:
       type: object
       description: Dane miejsca odwzorowania generatora - zapytanie
@@ -7923,21 +8698,133 @@ components:
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
-        pRatedActive:
-          type: number
-          description: "Moc czynna znamionowa [MW]"
-          example: 1234.567
-          maximum: 9999.999
-          minimum: 0.00
         pMaxGross:
           type: number
           description: "Moc osiągalna [MW]"
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
+        pRatedActive:
+          type: number
+          description: "Moc czynna znamionowa [MW]"
+          example: 1234.567
+          maximum: 9999.999
+          minimum: 0.00
       required:
         - pMaxGross
         - pMinGross
+    pl.pse.psi.pwds.structural.dto.common.FcrReserveDto:
+      type: object
+      properties:
+        fcrReserveUpAbility:
+          type: string
+          description: Zdolność do regulacji pierwotnej w górę
+          enum:
+            - T
+            - "N"
+          example: T
+        fcrReserveUpMin:
+          type: number
+          description: Minimalny zakres regulacji FCR w górę
+          example: 123.123
+          maximum: 999.999
+          minimum: 0.00
+        fcrReserveUpMax:
+          type: number
+          description: Maksymalny zakres regulacji FCR w górę
+          example: 123.123
+          maximum: 999.999
+          minimum: 0.00
+        fcrUpStaticScopeFrom:
+          type: integer
+          format: int32
+          description: Zakres statyzmu w górę od
+          example: 11
+          maximum: 99
+          minimum: 0
+        fcrUpStaticScopeTo:
+          type: integer
+          format: int32
+          description: Zakres statyzmu w górę do
+          example: 11
+          maximum: 99
+          minimum: 0
+        fcrUpStaticSetting:
+          type: integer
+          format: int32
+          description: Przyjęta nastawa statyzmu w górę
+          example: 11
+          maximum: 99
+          minimum: 0
+        fcrUpDeadbandScopeFrom:
+          type: integer
+          format: int32
+          description: Zakres strefy martwej w górę od
+          example: 111
+          maximum: 999
+          minimum: 0
+        fcrUpDeadbandScopeTo:
+          type: integer
+          format: int32
+          description: Zakres strefy martwej w górę do
+          example: 111
+          maximum: 999
+          minimum: 0
+        fcrReserveDownAbility:
+          type: string
+          description: Zdolność do regulacji pierwotnej w dół
+          enum:
+            - T
+            - "N"
+          example: T
+        fcrReserveDownMin:
+          type: number
+          description: Minimalny zakres regulacji FCR w dół
+          example: 123.123
+          maximum: 999.999
+          minimum: 0.00
+        fcrReserveDownMax:
+          type: number
+          description: Maksymalny zakres regulacji FCR w dół
+          example: 123.123
+          maximum: 999.999
+          minimum: 0.00
+        fcrDownStaticScopeFrom:
+          type: integer
+          format: int32
+          description: Zakres statyzmu w dół od
+          example: 11
+          maximum: 99
+          minimum: 0
+        fcrDownStaticScopeTo:
+          type: integer
+          format: int32
+          description: Zakres statyzmu w dół do
+          example: 11
+          maximum: 99
+          minimum: 0
+        fcrDownStaticSetting:
+          type: integer
+          format: int32
+          description: Przyjęta nastawa statyzmu w dół
+          example: 11
+          maximum: 99
+          minimum: 0
+        fcrDownDeadbandScopeFrom:
+          type: integer
+          format: int32
+          description: Zakres strefy martwej w dół od
+          example: 111
+          maximum: 999
+          minimum: 0
+        fcrDownDeadbandScopeTo:
+          type: integer
+          format: int32
+          description: Zakres strefy martwej w dół do
+          example: 111
+          maximum: 999
+          minimum: 0
+      title: FcrReserveDto
     pl.pse.psi.pwds.structural.dto.common.GeneratorChangeConnectionPointPpeCodeDto:
       type: object
       properties:
@@ -8676,6 +9563,7 @@ components:
             $ref: "#/components/schemas/pl.pse.psi.pwds.common.dto.common.FileUploadDto"
         generatorChangeQfpCharacteristics:
           type: array
+          description: Charakterystyki Q=f(P)
           items:
             $ref: "#/components/schemas/pl.pse.psi.pwds.structural.dto.request.QfpCharacteristicsRequestDto"
         generatorChangeQfuCharacteristics:
@@ -14698,15 +15586,15 @@ components:
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
-        pRatedActive:
-          type: number
-          description: "Moc czynna znamionowa [MW]"
-          example: 1234.567
-          maximum: 9999.999
-          minimum: 0.00
         pMaxGross:
           type: number
           description: "Moc osiągalna [MW]"
+          example: 1234.567
+          maximum: 9999.999
+          minimum: 0.00
+        pRatedActive:
+          type: number
+          description: "Moc czynna znamionowa [MW]"
           example: 1234.567
           maximum: 9999.999
           minimum: 0.00
