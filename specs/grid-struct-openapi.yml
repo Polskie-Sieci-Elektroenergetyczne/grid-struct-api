@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Kanał B2B dla zgłaszania danych strukturalnych
   description: Opis komunikatów przyjmowanych przez aplikację PWDS poprzez kanał B2B
-  version: "0.1"
+  version: "1.0.0"
 servers:
   - url: https://b2b.pse.pl
     description: Serwer B2B PSE
