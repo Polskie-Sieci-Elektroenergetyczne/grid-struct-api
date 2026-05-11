@@ -4,7 +4,7 @@ info:
   description: Opis komunikatów przyjmowanych przez aplikację PWDS poprzez kanał B2B
   version: "1.0.0"
 servers:
-  - url: https://b2b.pse.pl
+  - url: https://b2b.pse.pl/grid-struct-api/v1
     description: Serwer B2B PSE
 security:
   - Bearer-Auth: []
