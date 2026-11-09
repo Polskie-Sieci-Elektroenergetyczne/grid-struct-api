@@ -6,6 +6,28 @@ Format logu zmian zgodnie z [Keep a Changelog](https://keepachangelog.com/en/1.1
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-09
+
+### Dodano
+- entityId jako wymaganą część URL do identyfikacji zgłaszającego
+- opisy słowne wartości słownikowych
+- obsługę wysyłania plików
+- warunki przyłączenia
+- obsługę korekty
+- endpointy do pobierania danych na konkretną datę - pod zgłoszenia strukturalne
+- link do pobrania zgłoszenia w odpowiedzi na status
+
+### Zmieniono
+- Wymagalność pól w CR ES oprócz stacji - usunięto wymaganie nazwy oraz kodu (są nadawane przez PSE)
+- Wymagalność zakładek w rejestracji oraz aktualizacji
+
+### Naprawiono
+
+### Dokumentacja
+- opis entityId i jego wymagania
+- dodano opisy słowne wartości słownikowych
+
+
 ## [1.0.0-beta] - 2026-04-14
 
 ### Dodano
@@ -24,6 +46,7 @@ Format logu zmian zgodnie z [Keep a Changelog](https://keepachangelog.com/en/1.1
 
 Wersja inicjalna
 
-[Unreleased]: https://github.com/Polskie-Sieci-Elektroenergetyczne/grid-struct-api/compare/v1.0.0-beta...HEAD
+[Unreleased]: https://github.com/Polskie-Sieci-Elektroenergetyczne/grid-struct-api/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/Polskie-Sieci-Elektroenergetyczne/grid-struct-api/releases/tag/v1.0.0
 [1.0.0-beta]: https://github.com/Polskie-Sieci-Elektroenergetyczne/grid-struct-api/releases/tag/v1.0.0-beta
 [1.0.0-alpha]: https://github.com/Polskie-Sieci-Elektroenergetyczne/grid-struct-api/releases/tag/v1.0.0-alpha
